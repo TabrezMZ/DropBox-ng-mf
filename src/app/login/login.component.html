@@ -1,0 +1,30 @@
+<app-header></app-header>
+<div class="container">
+    <div class="form-container" id="login-form">
+      <h1>Login</h1>
+      <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
+        <label for="username">Email</label>
+        <input type="text" id="username" name="username" formControlName="email" placeholder="Enter Email">
+        <div *ngIf="submitted && formControl.email.errors" class="text-danger">
+          <div *ngIf="formControl.email.errors.email">Email must be valid.</div>
+          <div *ngIf="formControl.email.errors.required">Email is required.</div>
+        </div>
+        <label for="password" >Password</label>
+        <input type="password" id="password" name="password" formControlName="password" placeholder="Enter Password">
+        <div *ngIf="submitted && formControl.password.errors" class="text-danger">
+          <div *ngIf="formControl.password.errors.required">Password is required.</div>
+          <div *ngIf="formControl.password.errors.pattern">
+            <ul>
+              <li>Password should be alphanumeric</li>
+              <li>A letter of the password should be capital</li>
+              <li>Password must contain a special character (@, $, !, &, etc)</li>
+              <li>Password length must be greater than 7 characters</li>
+            </ul>
+          </div>
+        </div>
+        <button type="submit">Login</button>
+      </form>
+      <p>Don't have an account? <a routerLink="/signup" id="signup-link">Sign up</a></p>
+    </div>
+
+  </div>

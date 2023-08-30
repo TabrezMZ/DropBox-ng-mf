@@ -1,0 +1,72 @@
+<app-header></app-header>
+<div class="container">
+  <div class="form-container" id="signup-form">
+    <h1>Sign Up</h1>
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+      <label>User Name</label>
+      <input
+        type="text"
+        formControlName="userName"
+        class="form-control"
+        [ngClass]="{ 'is-invalid': submitted && f.userName.errors }"
+      />
+      <div *ngIf="submitted && f.userName.errors" class="invalid-feedback">
+        <div *ngIf="f.userName.errors.required">User Name is required</div>
+      </div>
+      <label>Email</label>
+      <input
+        type="text"
+        formControlName="email"
+        class="form-control"
+        [ngClass]="{ 'is-invalid': submitted && f.email.errors }"
+      />
+      <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+        <div *ngIf="f.email.errors.required">Email is required</div>
+        <div *ngIf="f.email.errors.email">
+          Email must be a valid email address
+        </div>
+      </div>
+      <label>Password</label>
+      <input
+        type="password"
+        formControlName="password"
+        class="form-control"
+        [ngClass]="{ 'is-invalid': submitted && f.password.errors }"
+      />
+      <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+        <div *ngIf="f.password.errors.required">Password is required</div>
+        <div *ngIf="f.password.errors.pattern">
+          <ul>
+            <li>Password should be alphanumeric</li>
+            <li>A letter of the password should be capital</li>
+            <li>Password must contain a special character (@, $, !, &, etc)</li>
+            <li>Password length must be greater than 7 characters</li>
+          </ul>
+        </div>
+      </div>
+      <label>Confirm Password</label>
+      <input
+        type="password"
+        formControlName="confirmPassword"
+        class="form-control"
+        [ngClass]="{ 'is-invalid': submitted && f.confirmPassword.errors }"
+      />
+      <div
+        *ngIf="submitted && f.confirmPassword.errors"
+        class="invalid-feedback"
+      >
+        <div *ngIf="f.confirmPassword.errors.required">
+          Confirm Password is required
+        </div>
+        <div *ngIf="f.confirmPassword.errors.mustMatch">
+          Passwords must match
+        </div>
+      </div>
+
+      <button type="submit">Sign Up</button>
+    </form>
+    <p>
+      Already have an account? <a routerLink="/login" id="login-link">Login</a>
+    </p>
+  </div>
+</div>
