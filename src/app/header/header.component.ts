@@ -7,12 +7,17 @@ import { Router } from '@angular/router';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent {
+  userData: any;
   constructor( private router: Router) {}
    isLoggedin: boolean = true;
    ngOnInit(){
-    var userData = localStorage.getItem('user-Data')
+    var userData : any = localStorage.getItem('user-Data')
+    this.userData = JSON.parse(userData)
     if(userData == undefined || userData == null) {
       this.isLoggedin = false
+    }
+    if(this.isLoggedin){
+      this.router.navigate(["/"]);
     }
    }
 

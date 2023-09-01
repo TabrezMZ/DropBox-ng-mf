@@ -9,7 +9,7 @@
       </ul>
       <div *ngIf="isLoggedin">
         <div  class="navbar-text px-2 text-dark">
-            Tabrez
+            {{userData.userName}}
           </div>
           <button type="button" class="btn btn-danger" (click)="logout()" >LogOut</button>
       </div>
